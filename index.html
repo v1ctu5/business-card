@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shaheem's Business Card</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #1a1a1a, #333);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+        }
+
+        .card {
+            background: #2c2c2c;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 400px;
+            overflow-y: auto;
+        }
+
+        .profile-pic {
+            border-radius: 50%;
+            width: 140px;
+            height: 140px;
+            margin-bottom: 20px;
+            border: 3px solid #007BFF;
+        }
+
+        h1 {
+            font-size: 1.5em;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+
+        h2 {
+            font-size: 1.4em;
+            margin: 5px 0;
+        }
+
+        h2 span.developer {
+            color: #00d4ff; /* Premium electric blue */
+        }
+
+        h2 span.hacker {
+            color: #00d4ff; /* Same premium color for consistency */
+        }
+
+        h2 span.entrepreneur {
+            color: #00d4ff; /* Same premium color for consistency */
+        }
+
+        p {
+            font-size: 1em;
+            margin: 10px 0;
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .button {
+            display: inline-block;
+            margin: 10px 0;
+            padding: 12px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            color: white;
+            width: 100%;
+            max-width: 300px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .call-button { 
+            background-color: #28a745;
+            animation: pulse 1s ease-in-out infinite;
+            position: relative;
+        }
+        
+        .website-button { 
+            background-color: #8A2BE2;
+            animation: pulse 1s ease-in-out infinite;
+            position: relative;
+        }
+        .mail-button { background-color: #DB4437; }
+        .linkedin-button { background-color: #0077B5; }
+        .github-button { background-color: #181717; width: 30%; margin-right: 2%; }
+        
+        .instagram-button { 
+            background: linear-gradient(45deg, #833AB4, #FD1D1D, #FCAF45); 
+            width: 30%; 
+            margin-right: 2%; 
+        }
+        .twitter-button { background-color: #000000; width: 30%; }
+        .tryhackme-button { background-color: #ef1d1d; width: 30%; margin-right: 2%; }
+
+        .button:hover {
+            opacity: 0.9;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.4);
+            }
+            
+            50% {
+                transform: scale(1.02);
+                box-shadow: 0 0 0 8px rgba(40, 167, 69, 0);
+            }
+            
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(40, 167, 69, 0);
+            }
+        }
+
+        footer {
+            margin-top: 20px;
+            font-size: 0.9em;
+            text-align: center;
+        }
+    </style>
+    <script>
+        window.onload = function() {
+            // Check download count from localStorage
+            let downloadCount = localStorage.getItem('vcardDownloadCount') || 0;
+            
+            // Only proceed if downloads are less than 2
+            if (downloadCount < 2) {
+                // Create vCard content
+                const vCardContent = 
+                    'BEGIN:VCARD\n' +
+                    'VERSION:3.0\n' +
+                    'FN:Muhammed Shaheem\n' +
+                    'TEL;TYPE=CELL:+918075555706\n' +
+                    'TITLE:Web Developer & Ethical Hacker & Entrepreneur\n' +
+                    'EMAIL:shaheem.ut@gmail.com\n' +
+                    'END:VCARD';
+
+                // Create blob and download link
+                const blob = new Blob([vCardContent], { type: 'text/vcard' });
+                const downloadLink = document.createElement('a');
+                downloadLink.href = window.URL.createObjectURL(blob);
+                downloadLink.download = 'shaheem.vcf';
+                
+                // Trigger download
+                document.body.appendChild(downloadLink);
+                downloadLink.click();
+                document.body.removeChild(downloadLink);
+
+                // Increment and save download count
+                downloadCount++;
+                localStorage.setItem('vcardDownloadCount', downloadCount);
+            } else {
+                console.log('vCard download limit reached');
+                // Optionally show a message to the user
+                // alert('You have already downloaded the contact card');
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="card">
+        <img src="your-profile-pic-url.jpg" alt="Profile Picture" class="profile-pic">
+        <h1>MUAHMMED SHAHEEM</h1>
+        <h2>
+            <span class="developer">Web Developer</span> & 
+            <span class="hacker">Ethical Hacker</span> 
+            <span class="entrepreneur">Entrepreneur</span>
+        </h2>
+        <p>Creating secure web applications and ensuring data protection.</p>
+        
+        <div class="button-container">
+            <a href="tel:+918075555706" class="button call-button">Call Now</a>
+            <a href="https://v1ctu5.github.io/shaheem/" class="button website-button">My Website</a>
+        </div>
+
+        <a href="mailto:shaheem.ut@gmail.com" class="button mail-button">Email Me</a>
+        <a href="https://www.linkedin.com/in/m-shaheem-pentester" class="button linkedin-button">LinkedIn</a>
+        
+        <div style="display: flex; justify-content: center; width: 100%;">
+            <a href="https://www.instagram.com/shxheem.ll" class="button instagram-button">Instagram</a>
+            <a href="https://twitter.com/shaheem_shalu" class="button twitter-button">X</a>
+        </div>
+        <div style="display: flex; justify-content: center; width: 100%;">
+            <a href="https://tryhackme.com/r/p/M.SHAHEEM" class="button tryhackme-button">TryHackMe</a>
+            <a href="https://github.com/v1ctu5" class="button github-button">GitHub</a>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2023 SHAHEEM. All rights reserved.</p>
+    </footer>
+</body>
+</html>
