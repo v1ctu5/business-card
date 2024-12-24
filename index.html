@@ -2,136 +2,159 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Shaheem's Business Card</title>
     <style>
+        /* Reset default styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 20px;
-            background: linear-gradient(135deg, #1a1a1a, #333);
+            background: #1a1a1a;
             color: #fff;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-start;
-            min-height: 100vh;
+            padding: 20px;
+            /* Prevent horizontal scroll */
+            overflow-x: hidden;
+            width: 100%;
         }
 
         .card {
             background: #2c2c2c;
-            border-radius: 15px;
-            padding: 30px;
-            text-align: center;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
             width: 100%;
-            max-width: 400px;
-            overflow-y: auto;
-        }
-
-        .profile-pic {
-            border-radius: 50%;
-            width: 140px;
-            height: 140px;
-            margin-bottom: 20px;
-            border: 3px solid #007BFF;
-        }
-
-        h1 {
-            font-size: 1.5em;
-            margin: 10px 0;
-            font-weight: bold;
-        }
-
-        h2 {
-            font-size: 1.4em;
-            margin: 5px 0;
-        }
-
-        h2 span.developer {
-            color: #00d4ff; /* Premium electric blue */
-        }
-
-        h2 span.hacker {
-            color: #00d4ff; /* Same premium color for consistency */
-        }
-
-        h2 span.entrepreneur {
-            color: #00d4ff; /* Same premium color for consistency */
-        }
-
-        p {
-            font-size: 1em;
-            margin: 10px 0;
-        }
-
-        .button-container {
+            max-width: 380px; /* Fixed width */
+            min-height: 600px;
+            border-radius: 15px;
+            padding: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .profile-pic {
+            width: 120px; /* Fixed size */
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid #007BFF;
+            margin: 20px 0;
+            object-fit: cover;
+        }
+
+        h1 {
+            font-size: 24px; /* Fixed size */
+            font-weight: bold;
+            margin: 10px 0;
+            text-align: center;
+            width: 100%;
+        }
+
+        h2 {
+            font-size: 18px; /* Fixed size */
+            line-height: 1.4;
+            margin: 5px 0;
+            text-align: center;
+            width: 100%;
+        }
+
+        h2 span {
+            color: #00d4ff;
+        }
+
+        p {
+            font-size: 16px; /* Fixed size */
+            margin: 15px 0;
+            text-align: center;
+            width: 100%;
+            padding: 0 10px;
+        }
+
+        .button-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
         }
 
         .button {
-            display: inline-block;
-            margin: 10px 0;
-            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 50px; /* Fixed height */
             border-radius: 25px;
+            font-weight: bold;
             text-decoration: none;
             color: white;
+            font-size: 16px; /* Fixed size */
             width: 100%;
-            max-width: 300px;
-            font-weight: bold;
-            text-align: center;
+            max-width: 320px; /* Fixed max-width */
         }
 
+        /* Full-width buttons */
+        .call-button, 
+        .website-button,
+        .mail-button,
+        .linkedin-button {
+            width: 100%;
+            margin: 5px 0;
+        }
+
+        /* Half-width buttons container */
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            max-width: 320px;
+            margin: 5px 0;
+        }
+
+        /* Half-width buttons */
+        .instagram-button,
+        .twitter-button,
+        .tryhackme-button,
+        .github-button {
+            width: calc(50% - 5px); /* Fixed width with gap consideration */
+            margin: 0;
+        }
+
+        /* Button colors and styles remain the same */
         .call-button { 
             background-color: #28a745;
             animation: pulse 1s ease-in-out infinite;
-            position: relative;
         }
         
         .website-button { 
             background-color: #8A2BE2;
             animation: pulse 1s ease-in-out infinite;
-            position: relative;
         }
+        
         .mail-button { background-color: #DB4437; }
         .linkedin-button { background-color: #0077B5; }
-        .github-button { background-color: #181717; width: 30%; margin-right: 2%; }
-        
-        .instagram-button { 
-            background: linear-gradient(45deg, #833AB4, #FD1D1D, #FCAF45); 
-            width: 30%; 
-            margin-right: 2%; 
-        }
-        .twitter-button { background-color: #000000; width: 30%; }
-        .tryhackme-button { background-color: #ef1d1d; width: 30%; margin-right: 2%; }
-
-        .button:hover {
-            opacity: 0.9;
-        }
+        .instagram-button { background: linear-gradient(45deg, #833AB4, #FD1D1D, #FCAF45); }
+        .twitter-button { background-color: #000000; }
+        .tryhackme-button { background-color: #ef1d1d; }
+        .github-button { background-color: #181717; }
 
         @keyframes pulse {
-            0% {
-                transform: scale(1);
-                box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.4);
-            }
-            
-            50% {
-                transform: scale(1.02);
-                box-shadow: 0 0 0 8px rgba(40, 167, 69, 0);
-            }
-            
-            100% {
-                transform: scale(1);
-                box-shadow: 0 0 0 0 rgba(40, 167, 69, 0);
-            }
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
         }
 
         footer {
             margin-top: 20px;
-            font-size: 0.9em;
+            font-size: 14px;
             text-align: center;
+            width: 100%;
         }
     </style>
     <script>
@@ -179,7 +202,7 @@
         <h1>MUAHMMED SHAHEEM</h1>
         <h2>
             <span class="developer">Web Developer</span> & 
-            <span class="hacker">Ethical Hacker</span> 
+            <span class="hacker">Ethical Hacker</span><br>
             <span class="entrepreneur">Entrepreneur</span>
         </h2>
         <p>Creating secure web applications and ensuring data protection.</p>
@@ -187,18 +210,17 @@
         <div class="button-container">
             <a href="tel:+918075555706" class="button call-button">Call Now</a>
             <a href="https://v1ctu5.github.io/shaheem/" class="button website-button">My Website</a>
-        </div>
-
-        <a href="mailto:shaheem.ut@gmail.com" class="button mail-button">Email Me</a>
-        <a href="https://www.linkedin.com/in/m-shaheem-pentester" class="button linkedin-button">LinkedIn</a>
-        
-        <div style="display: flex; justify-content: center; width: 100%;">
-            <a href="https://www.instagram.com/shxheem.ll" class="button instagram-button">Instagram</a>
-            <a href="https://twitter.com/shaheem_shalu" class="button twitter-button">X</a>
-        </div>
-        <div style="display: flex; justify-content: center; width: 100%;">
-            <a href="https://tryhackme.com/r/p/M.SHAHEEM" class="button tryhackme-button">TryHackMe</a>
-            <a href="https://github.com/v1ctu5" class="button github-button">GitHub</a>
+            <a href="mailto:shaheem.ut@gmail.com" class="button mail-button">Email Me</a>
+            <a href="https://www.linkedin.com/in/m-shaheem-pentester" class="button linkedin-button">LinkedIn</a>
+            
+            <div class="social-buttons">
+                <a href="https://www.instagram.com/shxheem.ll" class="button instagram-button">Instagram</a>
+                <a href="https://twitter.com/shaheem_shalu" class="button twitter-button">X</a>
+            </div>
+            <div class="social-buttons">
+                <a href="https://tryhackme.com/r/p/M.SHAHEEM" class="button tryhackme-button">TryHackMe</a>
+                <a href="https://github.com/v1ctu5" class="button github-button">GitHub</a>
+            </div>
         </div>
     </div>
     <footer>
